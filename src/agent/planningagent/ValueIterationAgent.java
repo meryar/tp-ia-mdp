@@ -36,14 +36,16 @@ public class ValueIterationAgent extends PlanningValueAgent{
 	/**
 	 * 
 	 * @param gamma
-	 * @param nbIterations
 	 * @param mdp
 	 */
 	public ValueIterationAgent(double gamma,  MDP mdp) {
 		super(mdp);
 		this.gamma = gamma;
-		//*** VOTRE CODE
 		
+		this.V = new HashMap<Etat,Double>();
+		for (Etat etat:this.mdp.getEtatsAccessibles()){
+			V.put(etat, 0.0);
+		}
 	}
 	
 	
@@ -58,23 +60,24 @@ public class ValueIterationAgent extends PlanningValueAgent{
 	 * 
 	 * Mise a jour de V: effectue UNE iteration de value iteration (calcule V_k(s) en fonction de V_{k-1}(s'))
 	 * et notifie ses observateurs.
-	 * Ce n'est pas la version inplace (qui utilise nouvelle valeur de V pour mettre a jour ...)
+	 * Ce n'est pas la version inplace (qui utilise la nouvelle valeur de V pour mettre a jour ...)
 	 */
 	@Override
 	public void updateV(){
 		//delta est utilise pour detecter la convergence de l'algorithme
-		//lorsque l'on planifie jusqu'a convergence, on arrete les iterations lorsque
-		//delta < epsilon 
+		//Dans la classe mere, lorsque l'on planifie jusqu'a convergence, on arrete les iterations        
+		//lorsque delta < epsilon 
+		//Dans cette classe, il  faut juste mettre a jour delta 
 		this.delta=0.0;
 		//*** VOTRE CODE
 		
 		
-		// mise a jour vmax et vmin pour affichage du gradient de couleur:
-		//vmax est la valeur de max pour tout s de V
-		//vmin est la valeur de min pour tout s de V
+		//mise a jour de vmax et vmin utilise pour affichage du gradient de couleur:
+		//vmax est la valeur max de V pour tout s 
+		//vmin est la valeur min de V pour tout s
 		// ...
 		
-		//******************* laisser notification a la fin de la methode	
+		//******************* laisser cette notification a la fin de la methode	
 		this.notifyObs();
 	}
 	
@@ -90,8 +93,12 @@ public class ValueIterationAgent extends PlanningValueAgent{
 		return Action2D.NONE;
 		
 	}
+
+
 	@Override
 	public double getValeur(Etat _e) {
+                 //Renvoie la valeur de l'Etat _e, c'est juste un getter, ne calcule pas la valeur ici
+                 //(la valeur est calculee dans updateV
 		//*** VOTRE CODE
 		
 		return 0.0;
@@ -115,12 +122,9 @@ public class ValueIterationAgent extends PlanningValueAgent{
 	@Override
 	public void reset() {
 		super.reset();
-
+                //reinitialise les valeurs de V 
+		//*** VOTRE CODE
 		
-		this.V.clear();
-		for (Etat etat:this.mdp.getEtatsAccessibles()){
-			V.put(etat, 0.0);
-		}
 		this.notifyObs();
 	}
 

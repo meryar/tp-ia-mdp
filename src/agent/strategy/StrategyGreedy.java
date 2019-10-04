@@ -33,7 +33,7 @@ public class StrategyGreedy extends StrategyExploration{
 			return null;
 		}
 	
-		//VOTRE CODE ICI
+		//VOTRE CODE ***
 		
 		return null;
 	}

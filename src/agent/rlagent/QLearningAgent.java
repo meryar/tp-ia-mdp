@@ -28,8 +28,6 @@ public class QLearningAgent extends RLAgent {
 	 * @param alpha
 	 * @param gamma
 	 * @param Environnement
-	 * @param nbS attention ici il faut tous les etats (meme obstacles) car Q avec tableau ...
-	 * @param nbA
 	 */
 	public QLearningAgent(double alpha, double gamma,
 			Environnement _env) {
@@ -51,7 +49,7 @@ public class QLearningAgent extends RLAgent {
 	 */
 	@Override
 	public List<Action> getPolitique(Etat e) {
-		// retourne action de meilleures valeurs dans _e selon Q : utiliser getQValeur()
+		// retourne action de meilleures valeurs dans e selon Q : utiliser getQValeur()
 		// retourne liste vide si aucune action legale (etat terminal)
 		List<Action> returnactions = new ArrayList<Action>();
 		if (this.getActionsLegales(e).size() == 0){//etat  absorbant; impossible de le verifier via environnement
