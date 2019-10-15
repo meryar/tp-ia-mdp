@@ -117,7 +117,13 @@ public class ValueIterationAgent extends PlanningValueAgent{
 		//vmax est la valeur max de V pour tout s 
 		//vmin est la valeur min de V pour tout s
 		// ...
-		
+		this.vmax = Integer.MIN_VALUE;
+		this.vmin = Integer.MAX_VALUE;
+		for (Etat key: this.V.keySet()){
+			this.vmax = Math.max(this.vmax, this.V.get(key));
+			this.vmin = Math.min(this.vmin, this.V.get(key));
+		}
+
 		//******************* laisser cette notification a la fin de la methode	
 		this.notifyObs();
 	}
