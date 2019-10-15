@@ -147,8 +147,9 @@ public class ValueIterationAgent extends PlanningValueAgent{
                  //(la valeur est calculee dans updateV
 		//*** VOTRE CODE
 		
-		return 0.0;
+		return this.V.get(_e);
 	}
+
 	/**
 	 * renvoi action(s) de plus forte(s) valeur(s) dans etat 
 	 * (plusieurs actions sont renvoyees si valeurs identiques, liste vide si aucune action n'est possible)
