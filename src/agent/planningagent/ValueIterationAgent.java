@@ -134,9 +134,12 @@ public class ValueIterationAgent extends PlanningValueAgent{
 	 */
 	@Override
 	public Action getAction(Etat e) {
-		//*** VOTRE CODE
-		
-		return Action2D.NONE;
+
+
+
+		List<Action> politique = this.getPolitique(e);
+
+		return politique.get(rand.nextInt(politique.size()));
 		
 	}
 
