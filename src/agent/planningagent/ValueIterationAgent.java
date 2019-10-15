@@ -171,7 +171,12 @@ public class ValueIterationAgent extends PlanningValueAgent{
 		super.reset();
                 //reinitialise les valeurs de V 
 		//*** VOTRE CODE
-		
+
+		this.V.clear();
+		for (Etat etat:this.mdp.getEtatsAccessibles()){
+			V.put(etat, 0.0);
+		}
+
 		this.notifyObs();
 	}
 
