@@ -5,15 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import environnement.*;
 import util.HashMapUtil;
 
 import java.util.HashMap;
-
-import environnement.Action;
-import environnement.Etat;
-import environnement.IllegalActionException;
-import environnement.MDP;
-import environnement.Action2D;
 
 
 /**
@@ -70,7 +65,7 @@ public class ValueIterationAgent extends PlanningValueAgent{
 		//Dans cette classe, il  faut juste mettre a jour delta 
 		this.delta=0.0;
 		//*** VOTRE CODE
-		
+
 		HashMap<Etat,Double> nextV = new HashMap<Etat,Double>();
 
 		for (Etat etat_abs : this.V.keySet()) {
