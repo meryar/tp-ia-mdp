@@ -160,8 +160,46 @@ public class ValueIterationAgent extends PlanningValueAgent{
 		
 		// retourne action de meilleure valeur dans _e selon V, 
 		// retourne liste vide si aucune action legale (etat absorbant)
+
 		List<Action> returnactions = new ArrayList<Action>();
-	
+
+		HashMap<Action,Double> score_action = new HashMap<Action,Double>();
+
+		double new_val,reward,propagation,proba;
+		for (Action action : this.mdp.getActionsPossibles(_e)) {
+			new_val = 0.0;
+			try {
+				for (Etat etat_cible : this.mdp.getEtatTransitionProba(_e, action).keySet()) {
+					proba = this.mdp.getEtatTransitionProba(_e, action).get(etat_cible);
+					reward = this.mdp.getRecompense(_e, action, etat_cible);
+					propagation = this.V.get(etat_cible) * this.gamma;
+					new_val += proba * (reward + propagation);
+				}
+			} catch (IllegalActionException e) {
+				System.out.println("illegal action!");
+			} catch (Exception e) {
+				System.out.println("unknown exception");
+			}
+			score_action.put(action,new_val);
+		}
+
+
+		double best_score = Integer.MIN_VALUE;
+		for (Action action: score_action.keySet()){
+			if (score_action.get(action) > best_score){
+				best_score = score_action.get(action);
+				returnactions.clear();
+				returnactions.add(action);
+			} else if (score_action.get(action) == best_score) {
+				returnactions.add(action);
+			}
+
+		}
+
+		if (returnactions.isEmpty()){
+			returnactions.add(Action2D.NONE);
+		}
+
 		return returnactions;
 		
 	}
