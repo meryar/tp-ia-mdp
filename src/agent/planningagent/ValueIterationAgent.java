@@ -71,6 +71,52 @@ public class ValueIterationAgent extends PlanningValueAgent{
 		this.delta=0.0;
 		//*** VOTRE CODE
 		
+		HashMap<Etat,Double> nextV = new HashMap<Etat,Double>();
+
+		for (Etat etat_abs : this.V.keySet()) {
+			if (this.mdp.estAbsorbant(etat_abs)){
+				nextV.put(etat_abs,0.0);
+			}
+		}
+
+		double new_val,reward,propagation,proba;
+		for (Etat etat_source : this.mdp.getEtatsAccessibles()) {
+				for (Action action : this.mdp.getActionsPossibles(etat_source)) {
+					new_val = 0.0;
+					try {
+						for (Etat etat_cible : this.mdp.getEtatTransitionProba(etat_source, action).keySet()) {
+							proba = this.mdp.getEtatTransitionProba(etat_source, action).get(etat_cible);
+							reward = this.mdp.getRecompense(etat_source, action, etat_cible);
+							propagation = this.V.get(etat_cible) * this.gamma;
+							new_val += proba * (reward + propagation);
+
+						}
+					} catch (IllegalActionException e) {
+						System.out.println("illegal action!");
+					} catch (Exception e) {
+						System.out.println("unknown exception");
+					}
+					if (!nextV.containsKey(etat_source)) {
+						nextV.put(etat_source, new_val);
+					} else {
+						if (nextV.get(etat_source) < new_val) {
+							nextV.put(etat_source, new_val);
+						}
+					}
+				}
+
+		}
+		double old_value;
+		double new_value;
+		for (Etat etat : this.V.keySet()){
+			assert(nextV.containsKey(etat));
+			old_value = this.V.get(etat);
+			new_value = nextV.get(etat);
+			this.delta = Math.max(this.delta,
+					Math.abs(old_value - new_value));
+		}
+
+		this.V = nextV;
 		
 		//mise a jour de vmax et vmin utilise pour affichage du gradient de couleur:
 		//vmax est la valeur max de V pour tout s 
