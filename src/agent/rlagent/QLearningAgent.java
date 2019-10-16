@@ -74,7 +74,7 @@ public class QLearningAgent extends RLAgent {
 	@Override
 	public double getQValeur(Etat e, Action a) {
 		//*** VOTRE CODE
-		return 0;
+		return this.qvaleurs.get(e).get(a);
 	}
 	
 	
