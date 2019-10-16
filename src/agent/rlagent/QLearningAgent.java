@@ -98,6 +98,8 @@ public class QLearningAgent extends RLAgent {
 		//*** VOTRE CODE
 		if (!this.qvaleurs.containsKey(e)){
 			return 0.0;
+		} else if (!this.qvaleurs.get(e).containsKey(a)){
+			return 0.0;
 		}
 
 		return this.qvaleurs.get(e).get(a);
@@ -108,6 +110,9 @@ public class QLearningAgent extends RLAgent {
 	@Override
 	public void setQValeur(Etat e, Action a, double d) {
 		//*** VOTRE CODE
+		if (!this.qvaleurs.containsKey(e)){
+			this.qvaleurs.put(e, new HashMap<>());
+		}
 
 		this.qvaleurs.get(e).put(a, d);
 
