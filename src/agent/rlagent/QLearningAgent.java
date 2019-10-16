@@ -58,6 +58,11 @@ public class QLearningAgent extends RLAgent {
 
 		}
 
+		if (!this.qvaleurs.containsKey(e)){
+			return new ArrayList<>();
+		}
+
+
 		double best_value = Integer.MIN_VALUE;
 		for (Action action: this.qvaleurs.get(e).keySet()){
 			if (this.getQValeur(e,action) > best_value){
@@ -79,7 +84,7 @@ public class QLearningAgent extends RLAgent {
 	@Override
 	public double getValeur(Etat e) {
 		//*** VOTRE CODE
-		Double max = Double.valueOf(Integer.MIN_VALUE);
+		double max = Double.MIN_VALUE;
 
 		if (!this.qvaleurs.containsKey(e)){
 			return 0.0;
@@ -143,6 +148,7 @@ public class QLearningAgent extends RLAgent {
 			System.out.println("QL mise a jour etat "+e+" action "+a+" etat' "+esuivant+ " r "+reward);
 
 		//*** VOTRE CODE
+		this.setQValeur(e, a,(1 - alpha) * this.getQValeur(e, a) + alpha * (reward + this.getValeur(esuivant)));
 	}
 
 	@Override
@@ -155,7 +161,6 @@ public class QLearningAgent extends RLAgent {
 	public void reset() {
 		super.reset();
 		//*** VOTRE CODE
-
 		this.qvaleurs.clear();
 
 		this.episodeNb =0;
