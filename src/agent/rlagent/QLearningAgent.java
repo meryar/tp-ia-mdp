@@ -80,6 +80,11 @@ public class QLearningAgent extends RLAgent {
 	public double getValeur(Etat e) {
 		//*** VOTRE CODE
 		Double max = Double.valueOf(Integer.MIN_VALUE);
+
+		if (!this.qvaleurs.containsKey(e)){
+			return 0.0;
+		}
+
 		for (Action action : this.qvaleurs.get(e).keySet()){
 			if (this.qvaleurs.get(e).get(action) > max){
 				max = this.qvaleurs.get(e).get(action);
@@ -91,6 +96,10 @@ public class QLearningAgent extends RLAgent {
 	@Override
 	public double getQValeur(Etat e, Action a) {
 		//*** VOTRE CODE
+		if (!this.qvaleurs.containsKey(e)){
+			return 0.0;
+		}
+
 		return this.qvaleurs.get(e).get(a);
 	}
 	
