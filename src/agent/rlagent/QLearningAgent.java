@@ -55,9 +55,21 @@ public class QLearningAgent extends RLAgent {
 		if (this.getActionsLegales(e).size() == 0){//etat  absorbant; impossible de le verifier via environnement
 			System.out.println("aucune action legale");
 			return new ArrayList<Action>();
-			
+
 		}
-		
+
+		double best_value = Integer.MIN_VALUE;
+		for (Action action: this.qvaleurs.get(e).keySet()){
+			if (this.getQValeur(e,action) > best_value){
+				returnactions.clear();
+				returnactions.add(action);
+				best_value = this.getQValeur(e,action);
+			} else if (this.getQValeur(e,action) == best_value){
+				returnactions.add(action);
+			}
+		}
+
+
 		//*** VOTRE CODE
 		return returnactions;
 		
