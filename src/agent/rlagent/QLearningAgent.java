@@ -108,17 +108,20 @@ public class QLearningAgent extends RLAgent {
 	@Override
 	public void setQValeur(Etat e, Action a, double d) {
 		//*** VOTRE CODE
-		
-		
+
+		this.qvaleurs.get(e).put(a, d);
+
 		// mise a jour vmax et vmin pour affichage du gradient de couleur:
 				//vmax est la valeur de max pour tout s de V
 				//vmin est la valeur de min pour tout s de V
 				// ...
-		
-		
+
+		this.vmax = Math.max(this.vmax, d);
+		this.vmin = Math.min(this.vmin, d);
+
 		this.notifyObs();
 		
-	}
+	}	
 	
 	
 	/**
