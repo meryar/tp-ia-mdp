@@ -59,7 +59,7 @@ public class QLearningAgent extends RLAgent {
 		}
 
 		if (!this.qvaleurs.containsKey(e)){
-			return new ArrayList<>();
+			return this.getActionsLegales(e);
 		}
 
 
