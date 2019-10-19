@@ -30,6 +30,16 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 	}
 
 	}
+
+	@Override
+	public int hashCode() {
+		int result = pacman.getX() * pacman.getY();
+		for (int i = 0; i<ghosts.size(); i++) {
+			result += ghosts.get(i).getX()*ghosts.get(i).getY();
+		}
+
+		return result;
+	}
 	
 	@Override
 	public String toString() {
