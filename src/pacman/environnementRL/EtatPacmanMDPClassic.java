@@ -2,7 +2,9 @@ package pacman.environnementRL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import pacman.elements.MazePacman;
 import pacman.elements.StateAgentPacman;
 import pacman.elements.StateGamePacman;
 import environnement.Etat;
@@ -12,11 +14,21 @@ import environnement.Etat;
  */
 public class EtatPacmanMDPClassic implements Etat , Cloneable{
 
-	
+	int score;
+	StateAgentPacman pacman;
+	MazePacman labyrinthe;
+	List<StateAgentPacman> ghosts;
+
 	public EtatPacmanMDPClassic(StateGamePacman _stategamepacman){
 	
-		
-		
+	score =_stategamepacman.getScore();
+	pacman =_stategamepacman.getPacmanState(0);
+	labyrinthe = _stategamepacman.getMaze();
+	ghosts = new ArrayList<>();
+	for (int i = 0; i<_stategamepacman.getNumberOfGhosts(); i++) {
+		ghosts.add(_stategamepacman.getGhostState(i));
+	}
+
 	}
 	
 	@Override
