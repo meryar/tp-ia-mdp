@@ -65,7 +65,8 @@ public class QLearningAgent extends RLAgent {
 		//*** VOTRE CODE
 
 		double best_value = Integer.MIN_VALUE;
-		for (Action action: this.qvaleurs.get(e).keySet()){
+		double value;
+		for (Action action: this.getActionsLegales(e)){
 			if (this.getQValeur(e,action) > best_value){
 				returnactions.clear();
 				returnactions.add(action);
