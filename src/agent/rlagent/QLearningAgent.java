@@ -62,6 +62,7 @@ public class QLearningAgent extends RLAgent {
 			return this.getActionsLegales(e);
 		}
 
+		//*** VOTRE CODE
 
 		double best_value = Integer.MIN_VALUE;
 		for (Action action: this.qvaleurs.get(e).keySet()){
@@ -75,7 +76,6 @@ public class QLearningAgent extends RLAgent {
 		}
 
 
-		//*** VOTRE CODE
 		return returnactions;
 		
 		
