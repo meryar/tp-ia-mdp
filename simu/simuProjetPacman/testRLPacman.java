@@ -33,17 +33,17 @@ public class testRLPacman extends Application{
 	// parametres RL*/
 	static double gamma=0.8;
 	static double alpha=0.1;
-	static double _epsilon = 0.05;
+	static double _epsilon = 0.95;
 	
 	// parametres experience a lancer, un episode = une partie */
 	/** nombre d'experiences a lancer (pour faire une moyenne), une experience est un apprentissage sur plusieurs parties */
-	static int nbmean =3;
+	static int nbmean =1;
 	/** nombre de parties ou l'agent apprend */
-	static int nbepisodelearn = 500;
+	static int nbepisodelearn = 2000;
 	/** nombre de partie ou l'agent exploite la politique apprise (epsilon=0) */
 	static int nbepisodegreedy = 300;
 	/** nombre de parties ou l'on affiche le jeu pacman pour voir le comportement appris  */
-	static int nbepisodegreedydisplay=0;
+	static int nbepisodegreedydisplay=1;
 
 	
 	/** pour afficher jeu de pacman en mode greedy */
