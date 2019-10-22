@@ -14,29 +14,31 @@ import environnement.Etat;
  */
 public class EtatPacmanMDPClassic implements Etat , Cloneable{
 
-	int score;
-	StateAgentPacman pacman;
-	MazePacman labyrinthe;
-	List<StateAgentPacman> ghosts;
+
+	int x_pacman, y_pacman, x_ghost, y_ghost;
+	//List<StateAgentPacman> ghosts;
 
 	public EtatPacmanMDPClassic(StateGamePacman _stategamepacman){
-	
-	score =_stategamepacman.getScore();
-	pacman =_stategamepacman.getPacmanState(0);
-	labyrinthe = _stategamepacman.getMaze();
-	ghosts = new ArrayList<>();
+
+	x_pacman = _stategamepacman.getPacmanState(0).getX();
+	y_pacman = _stategamepacman.getPacmanState(0).getY();
+	x_ghost = _stategamepacman.getGhostState(0).getX();
+	y_ghost = _stategamepacman.getGhostState(0).getY();
+
+	/*ghosts = new ArrayList<>();
 	for (int i = 0; i<_stategamepacman.getNumberOfGhosts(); i++) {
 		ghosts.add(_stategamepacman.getGhostState(i));
-	}
+	}*/
 
 	}
 
 	@Override
 	public int hashCode() {
-		int result = pacman.getX() * pacman.getY();
-		for (int i = 0; i<ghosts.size(); i++) {
+		int result = x_pacman * y_pacman;
+		/*for (int i = 0; i<ghosts.size(); i++) {
 			result += ghosts.get(i).getX()*ghosts.get(i).getY();
-		}
+		}*/
+		result += x_ghost * y_ghost;
 
 		return result;
 	}
