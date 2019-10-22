@@ -1,5 +1,6 @@
 package pacman.environnementRL;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,55 +16,55 @@ import environnement.Etat;
 public class EtatPacmanMDPClassic implements Etat , Cloneable{
 
 
-	int x_pacman, y_pacman, distClosestDot;
-	boolean ghost_up, ghost_down, ghost_left, ghost_right;
-
-	//List<StateAgentPacman> ghosts;
+	List<Point> ghosts;
+	List<Point> pacmans;
+	List<Point> dots;
 
 	public EtatPacmanMDPClassic(StateGamePacman _stategamepacman){
 
-	x_pacman = _stategamepacman.getPacmanState(0).getX();
-	y_pacman = _stategamepacman.getPacmanState(0).getY();
+	pacmans = new ArrayList<>();
+	ghosts = new ArrayList<>();
+	dots = new ArrayList<>();
 
-	StateAgentPacman ghost = _stategamepacman.getGhostState(0);
-	ghost_left = ghost.getX() == x_pacman - 1 && ghost.getY() == y_pacman;
-	ghost_right = ghost.getX() == x_pacman + 1 && ghost.getY() == y_pacman;
-	ghost_up = ghost.getX() == x_pacman && ghost.getY() == y_pacman + 1;
-	ghost_down = ghost.getX() == x_pacman && ghost.getY() == y_pacman - 1;
+	for (int i = 0; i < _stategamepacman.getNumberOfPacmans(); i++) {
+		pacmans.add(new Point(_stategamepacman.getPacmanState(i).getX(), _stategamepacman.getPacmanState(i).getY()));
+	}
 
-	distClosestDot =_stategamepacman.getClosestDot(_stategamepacman.getPacmanState(0));
+	for (int i = 0; i < _stategamepacman.getNumberOfGhosts(); i++) {
+		ghosts.add(new Point(_stategamepacman.getGhostState(i).getX(), _stategamepacman.getGhostState(i).getY()));
+	}
 
-	/*ghosts = new ArrayList<>();
-	for (int i = 0; i<_stategamepacman.getNumberOfGhosts(); i++) {
-		ghosts.add(_stategamepacman.getGhostState(i));
-	}*/
+	for (int i = 1; i < _stategamepacman.getMaze().getSizeX() - 1; i++) {
+		for (int j = 1; j < _stategamepacman.getMaze().getSizeY() - 1; j++) {
+			if (_stategamepacman.getMaze().isFood(i,j)){
+				dots.add(new Point( i, j));
+			}
+		}
+	}
 
 	}
 
 	@Override
 	public int hashCode() {
-		int result = x_pacman * y_pacman;
-		/*for (int i = 0; i<ghosts.size(); i++) {
-			result += ghosts.get(i).getX()*ghosts.get(i).getY();
-		}*/
-		if (ghost_left){ result += 1000;}
-		else if (ghost_right){ result += 1001;}
-		else if (ghost_down){ result += 1002;}
-		else if (ghost_up){ result += 1003;}
-		result += distClosestDot;
+		int result = 0;
+
+		for( Point point: pacmans){
+			result += point.getX() * point.getY();
+		}
+		for( Point point: ghosts){
+			result += point.getX() * point.getY();
+		}
+		for( Point point: dots){
+			result += point.getX() * point.getY();
+		}
 
 		return result;
 	}
 	
 	@Override
 	public String toString() {
-		String posGhost = " unknown";
-		if (ghost_left){ posGhost = " left";}
-		else if (ghost_right){ posGhost = " right";}
-		else if (ghost_up){ posGhost = " up";}
-		else if (ghost_down){ posGhost = " down";}
 
-		return " pacman[" + x_pacman + "," + y_pacman + "] and pos ghost" + posGhost + " and closest dot at " + distClosestDot ;
+		return "" ;
 	}
 	
 	
