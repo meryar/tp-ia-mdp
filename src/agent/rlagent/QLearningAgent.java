@@ -92,8 +92,8 @@ public class QLearningAgent extends RLAgent {
 		}
 
 		for (Action action : env.getActionsPossibles(e)){
-			if (this.qvaleurs.get(e).get(action) > max){
-				max = this.qvaleurs.get(e).get(action);
+			if (this.getQValeur(e,action) > max){
+				max = this.getQValeur(e,action);
 			}
 		}
 		return max;
