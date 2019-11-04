@@ -49,7 +49,6 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		int result = ghosts.hashCode();
 		result = result * 32 + pacmans.hashCode();
 		result = result * 32 + dots.hashCode();
-
 		return result;
 	}
 	
