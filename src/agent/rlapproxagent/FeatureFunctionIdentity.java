@@ -1,9 +1,6 @@
 package agent.rlapproxagent;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 import environnement.Action;
 import environnement.Action2D;
@@ -20,11 +17,15 @@ import javafx.util.Pair;
 public class FeatureFunctionIdentity implements FeatureFunction {
 	//*** VOTRE CODE
 	double [][] tab;
+	Map<Pair<Etat,Action>,Integer> repertoire;
+	int last_attributed_line;
 
 	public FeatureFunctionIdentity(int _nbEtat, int _nbAction){
-		tab = new double[_nbEtat][_nbAction];
-		for (int i = 0; i < _nbEtat; i++){
-			for (int j = 0; j < _nbAction; j++){
+		int nb_key = _nbAction * _nbEtat;
+
+		tab = new double[nb_key][nb_key];
+		for (int i = 0; i < nb_key; i++){
+			for (int j = 0; j < nb_key; j++){
 				if(i == j){
 					tab[i][j] = 1;
 				} else {
@@ -32,18 +33,29 @@ public class FeatureFunctionIdentity implements FeatureFunction {
 				}
 			}
 		}
+
+		last_attributed_line = -1;
+
+		repertoire = new HashMap<>();
 	}
 	
 	@Override
 	public int getFeatureNb() {
-		//*** VOTRE CODE
-		return null;
+
+		return tab.length;
 	}
 
 	@Override
 	public double[] getFeatures(Etat e,Action a){
 		//*** VOTRE CODE
-		return e.;
+		Pair<Etat,Action> key = new Pair<>(e,a);
+		if (!repertoire.containsKey(key)) {
+			repertoire.put(key,last_attributed_line + 1);
+			last_attributed_line += 1;
+		}
+
+
+		return tab[repertoire.get(key)];
 	}
 	
 
