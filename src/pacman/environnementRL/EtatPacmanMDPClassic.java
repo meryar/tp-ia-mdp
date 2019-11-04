@@ -46,17 +46,9 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 
 	@Override
 	public int hashCode() {
-		int result = 0;
-
-		for( Point point: pacmans){
-			result += point.getX() * point.getY();
-		}
-		for( Point point: ghosts){
-			result += point.getX() * point.getY();
-		}
-		for( Point point: dots){
-			result += point.getX() * point.getY();
-		}
+		int result = ghosts.hashCode();
+		result = result * 32 + pacmans.hashCode();
+		result = result * 32 + dots.hashCode();
 
 		return result;
 	}
@@ -65,6 +57,12 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 	public String toString() {
 
 		return "" ;
+	}
+
+	@Override
+	public boolean equals(Object e){
+		EtatPacmanMDPClassic e1 = (EtatPacmanMDPClassic) e;
+		return e.hashCode() == this.hashCode();
 	}
 	
 	
