@@ -59,8 +59,8 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 			for (int j = 0; j < window; j++) {
 				int x = xPac - windowR + i;
 				int y = yPac - windowR + j;
-				for (int u = 0; u < _stategamepacman.getMaze().getSizeX() - 1; u++) {
-					for (int v = 0; v < _stategamepacman.getMaze().getSizeY() - 1; v++) {
+				for (int u = 0; u < _stategamepacman.getMaze().getSizeX() ; u++) {
+					for (int v = 0; v < _stategamepacman.getMaze().getSizeY(); v++) {
 						if (u == x && v == y && _stategamepacman.getMaze().isFood(u, v)) {
 							tab[i][j] = 2;
 						}
@@ -79,6 +79,8 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 			}
 		}
 		tab[windowR][windowR] = 1;
+
+
 
 
 				/*
