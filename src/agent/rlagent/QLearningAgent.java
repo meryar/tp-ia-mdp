@@ -58,22 +58,20 @@ public class QLearningAgent extends RLAgent {
 
 		}
 
+		//*** VOTRE CODE
+
 		if (!this.qvaleurs.containsKey(e)){
 			return this.getActionsLegales(e);
 		}
 
-		//*** VOTRE CODE
 
 		double best_value = Integer.MIN_VALUE;
-		double value;
 		for (Action action: this.getActionsLegales(e)){
 			if (this.getQValeur(e,action) > best_value){
 				returnactions.clear();
 				returnactions.add(action);
 				best_value = this.getQValeur(e,action);
-			} else if (this.getQValeur(e,action) == best_value){
-				returnactions.add(action);
-			}
+			} else if (this.getQValeur(e,action) == best_value) returnactions.add(action);
 		}
 
 
