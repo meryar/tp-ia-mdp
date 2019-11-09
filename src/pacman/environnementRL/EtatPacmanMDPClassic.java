@@ -55,37 +55,45 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		int window = 3;
 		int windowR = 1;
 		tab = new int[window][window];
+		if (_stategamepacman.getMaze().isWall(xPac-1,yPac-1)){ tab[0][0] = 4; }
+		if (_stategamepacman.getMaze().isWall(xPac-1,yPac)){ tab[0][1] = 4; }
+		if (_stategamepacman.getMaze().isWall(xPac-1,yPac+1)){ tab[0][2] = 4; }
 
-		for (int i = 0; i < window; i++) {
-			for (int j = 0; j < window; j++) {
-				int x = xPac - windowR + i;
-				int y = yPac - windowR + j;
-				for (int u = 0; u < _stategamepacman.getMaze().getSizeX() ; u++) {
-					for (int v = 0; v < _stategamepacman.getMaze().getSizeY(); v++) {
-						if (u == x && v == y && _stategamepacman.getMaze().isFood(u, v)) {
-							tab[i][j] = 2;
-						}
-						if (u == x && v == y && _stategamepacman.getMaze().isWall(u,v)) {
-							tab[i][j] = 4;
-						}
-					}
-				}
+		if (_stategamepacman.getMaze().isWall(xPac,yPac-1)){ tab[1][0] = 4; }
+		if (_stategamepacman.getMaze().isWall(xPac,yPac+1)){ tab[1][2] = 4; }
 
-				for (int u = 0; u < _stategamepacman.getNumberOfGhosts(); u++) {
-					int xGost = _stategamepacman.getGhostState(u).getX();
-					int yGost = _stategamepacman.getGhostState(u).getY();
-					if (xGost == x && yGost == y) {
-						tab[i][j] = 3;
+		if (_stategamepacman.getMaze().isWall(xPac+1,yPac-1)){ tab[2][0] = 4; }
+		if (_stategamepacman.getMaze().isWall(xPac+1,yPac)){ tab[2][1] = 4; }
+		if (_stategamepacman.getMaze().isWall(xPac+1,yPac+1)){ tab[2][2] = 4; }
+
+		if (_stategamepacman.getMaze().isFood(xPac-1,yPac-1)){ tab[0][0] = 2; }
+		if (_stategamepacman.getMaze().isFood(xPac-1,yPac)){ tab[0][1] = 2; }
+		if (_stategamepacman.getMaze().isFood(xPac-1,yPac+1)){ tab[0][2] = 2; }
+
+		if (_stategamepacman.getMaze().isFood(xPac,yPac-1)){ tab[1][0] = 2; }
+		if (_stategamepacman.getMaze().isFood(xPac,yPac+1)){ tab[1][2] = 2; }
+
+		if (_stategamepacman.getMaze().isFood(xPac+1,yPac-1)){ tab[2][0] = 2; }
+		if (_stategamepacman.getMaze().isFood(xPac+1,yPac)){ tab[2][1] = 2; }
+		if (_stategamepacman.getMaze().isFood(xPac+1,yPac+1)){ tab[2][2] = 2; }
+
+		tab[windowR][windowR] = 1;
+
+		for (int g = 0; g < _stategamepacman.getNumberOfGhosts(); g++){
+			int xGhost = _stategamepacman.getGhostState(g).getX();
+			int yGhost = _stategamepacman.getGhostState(g).getY();
+			for (int i = -1; i <= 1; i++){
+				for (int j = -1; j <= 1; j++){
+					if (xGhost == xPac + i && yGhost == yPac + j){
+						tab[i+1][j+1] = 3;
 					}
 				}
 			}
 		}
-		tab[windowR][windowR] = 1;
 
 		if (false){
-			System.out.println("test");
 			for (int i = 0; i < 3; i++){
-				for (int j = 0; j < 3; j++){
+				for (int j = 2; j >= 0; j--){
 					System.out.print(tab[i][j]);
 				}
 				System.out.print("\n");
