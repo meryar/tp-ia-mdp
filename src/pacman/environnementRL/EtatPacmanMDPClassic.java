@@ -28,6 +28,9 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 
 
 	public EtatPacmanMDPClassic(StateGamePacman _stategamepacman){
+
+
+
 		/**
 		pacmans = new ArrayList<>();
 		ghosts = new ArrayList<>();
@@ -49,10 +52,14 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 			}
 		}**/
 
-		//TEST DE FENETRAGE
+		tab = new int[3][3];
+		for (int i = 0; i < 3; i++){
+			for (int j = 0; j < 3; j++){
+				tab[i][j] = 0;
+			}
+		}
 		int xPac = _stategamepacman.getPacmanState(0).getX();
 		int yPac = _stategamepacman.getPacmanState(0).getY();
-		tab = new int[3][3];
 
 		for (int i = -1; i <= 1; i++){
 			for (int j = -1; j <= 1; j++){
@@ -79,7 +86,7 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 
 		tab[1][1] = 1;
 
-		if (false){
+		if (true){
 			for (int i = 0; i < 3; i++){
 				for (int j = 0; j < 3; j++){
 					System.out.print(tab[i][j]);
