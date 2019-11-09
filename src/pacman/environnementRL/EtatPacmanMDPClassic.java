@@ -16,9 +16,9 @@ import environnement.Etat;
 public class EtatPacmanMDPClassic implements Etat , Cloneable{
 
 
-//	List<Point> ghosts;
-//	List<Point> pacmans;
-//	List<Point> dots;
+	List<Point> ghosts;
+	List<Point> pacmans;
+	List<Point> dots;
 
 	int dimension;
 
@@ -27,9 +27,7 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 	int [][] tab;
 
 	public EtatPacmanMDPClassic(StateGamePacman _stategamepacman){
-
 		/**
-
 		pacmans = new ArrayList<>();
 		ghosts = new ArrayList<>();
 		dots = new ArrayList<>();
@@ -48,23 +46,21 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 					dots.add(new Point( i, j));
 				}
 			}
-		}
-
-		 **/
+		}**/
 
 		//TEST DE FENETRAGE
 		int xPac = _stategamepacman.getPacmanState(0).getX();
 		int yPac = _stategamepacman.getPacmanState(0).getY();
-		int window = 5;
-		int windowR = 2;
+		int window = 7;
+		int windowR = 3;
 		tab = new int[window][window];
 
 		for (int i = 0; i < window; i++) {
 			for (int j = 0; j < window; j++) {
 				int x = xPac - windowR + i;
 				int y = yPac - windowR + j;
-				for (int u = 1; u < _stategamepacman.getMaze().getSizeX() - 1; u++) {
-					for (int v = 1; v < _stategamepacman.getMaze().getSizeY() - 1; v++) {
+				for (int u = 0; u < _stategamepacman.getMaze().getSizeX() - 1; u++) {
+					for (int v = 0; v < _stategamepacman.getMaze().getSizeY() - 1; v++) {
 						if (u == x && v == y && _stategamepacman.getMaze().isFood(u, v)) {
 							tab[i][j] = 2;
 						}
@@ -83,14 +79,6 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 			}
 		}
 		tab[windowR][windowR] = 1;
-
-		for (int i = 0; i < 5; i++){
-			String msg = "";
-			for (int j = 0; j < 5; j++){
-				msg += tab[i][j] + " ";
-			}
-			//System.out.println(msg);
-		}
 
 
 				/*
