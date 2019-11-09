@@ -52,32 +52,18 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		//TEST DE FENETRAGE
 		int xPac = _stategamepacman.getPacmanState(0).getX();
 		int yPac = _stategamepacman.getPacmanState(0).getY();
-		int window = 3;
-		int windowR = 1;
-		tab = new int[window][window];
-		if (_stategamepacman.getMaze().isWall(xPac-1,yPac-1)){ tab[0][0] = 4; }
-		if (_stategamepacman.getMaze().isWall(xPac-1,yPac)){ tab[0][1] = 4; }
-		if (_stategamepacman.getMaze().isWall(xPac-1,yPac+1)){ tab[0][2] = 4; }
+		tab = new int[3][3];
 
-		if (_stategamepacman.getMaze().isWall(xPac,yPac-1)){ tab[1][0] = 4; }
-		if (_stategamepacman.getMaze().isWall(xPac,yPac+1)){ tab[1][2] = 4; }
-
-		if (_stategamepacman.getMaze().isWall(xPac+1,yPac-1)){ tab[2][0] = 4; }
-		if (_stategamepacman.getMaze().isWall(xPac+1,yPac)){ tab[2][1] = 4; }
-		if (_stategamepacman.getMaze().isWall(xPac+1,yPac+1)){ tab[2][2] = 4; }
-
-		if (_stategamepacman.getMaze().isFood(xPac-1,yPac-1)){ tab[0][0] = 2; }
-		if (_stategamepacman.getMaze().isFood(xPac-1,yPac)){ tab[0][1] = 2; }
-		if (_stategamepacman.getMaze().isFood(xPac-1,yPac+1)){ tab[0][2] = 2; }
-
-		if (_stategamepacman.getMaze().isFood(xPac,yPac-1)){ tab[1][0] = 2; }
-		if (_stategamepacman.getMaze().isFood(xPac,yPac+1)){ tab[1][2] = 2; }
-
-		if (_stategamepacman.getMaze().isFood(xPac+1,yPac-1)){ tab[2][0] = 2; }
-		if (_stategamepacman.getMaze().isFood(xPac+1,yPac)){ tab[2][1] = 2; }
-		if (_stategamepacman.getMaze().isFood(xPac+1,yPac+1)){ tab[2][2] = 2; }
-
-		tab[windowR][windowR] = 1;
+		for (int i = -1; i <= 1; i++){
+			for (int j = -1; j <= 1; j++){
+				if (_stategamepacman.getMaze().isWall(xPac + i, yPac + j)){
+					tab[i+1][j+1] = 4;
+				}
+				if (_stategamepacman.getMaze().isFood(xPac + i, yPac + j)){
+					tab[i+1][j+1] = 2;
+				}
+			}
+		}
 
 		for (int g = 0; g < _stategamepacman.getNumberOfGhosts(); g++){
 			int xGhost = _stategamepacman.getGhostState(g).getX();
@@ -91,9 +77,11 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 			}
 		}
 
+		tab[1][1] = 1;
+
 		if (false){
 			for (int i = 0; i < 3; i++){
-				for (int j = 2; j >= 0; j--){
+				for (int j = 0; j < 3; j++){
 					System.out.print(tab[i][j]);
 				}
 				System.out.print("\n");
