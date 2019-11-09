@@ -22,7 +22,6 @@ public class FeatureFunctionIdentity implements FeatureFunction {
 
 	public FeatureFunctionIdentity(int _nbEtat, int _nbAction){
 		int nb_key = _nbAction * _nbEtat;
-
 		tab = new double[nb_key][nb_key];
 		for (int i = 0; i < nb_key; i++){
 			for (int j = 0; j < nb_key; j++){
@@ -46,15 +45,14 @@ public class FeatureFunctionIdentity implements FeatureFunction {
 	}
 
 	@Override
-	public double[] getFeatures(Etat e,Action a){
+	public double[] getFeatures(Etat e, Action a){
 		//*** VOTRE CODE
 		Pair<Etat,Action> key = new Pair<>(e,a);
 		if (!repertoire.containsKey(key)) {
+
 			repertoire.put(key,last_attributed_line + 1);
 			last_attributed_line += 1;
 		}
-
-
 		return tab[repertoire.get(key)];
 	}
 	

@@ -20,11 +20,12 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 	List<Point> pacmans;
 	List<Point> dots;
 
-	int dimension;
+	int dimension = 3000;
 
 	//Point dot, gost;
 
 	int [][] tab;
+
 
 	public EtatPacmanMDPClassic(StateGamePacman _stategamepacman){
 		/**
@@ -51,8 +52,8 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		//TEST DE FENETRAGE
 		int xPac = _stategamepacman.getPacmanState(0).getX();
 		int yPac = _stategamepacman.getPacmanState(0).getY();
-		int window = 7;
-		int windowR = 3;
+		int window = 3;
+		int windowR = 1;
 		tab = new int[window][window];
 
 		for (int i = 0; i < window; i++) {
@@ -80,10 +81,19 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		}
 		tab[windowR][windowR] = 1;
 
+		if (true){
+			System.out.println("test");
+			for (int i = 0; i < 3; i++){
+				for (int j = 0; j < 3; j++){
+					System.out.print(tab[i][j]);
+				}
+				System.out.print("\n");
+			}
+		}
 
 
 
-				/*
+		/*
 		List<Point> dots2 = new ArrayList<>();
 		for (int i = 1; i < _stategamepacman.getMaze().getSizeX() - 1; i++) {
 			for (int j = 1; j < _stategamepacman.getMaze().getSizeY() - 1; j++) {
@@ -104,12 +114,8 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 			}
 		}
 		dot = new Point(0,0);
-
-
 		gost = new Point(_stategamepacman.getGhostState(0).getX() - _stategamepacman.getPacmanState(0).getX(),
 				_stategamepacman.getGhostState(0).getY() - _stategamepacman.getPacmanState(0).getY());*/
-
-		dimension = 3000;
 
 	}
 
@@ -119,7 +125,6 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		//result = result * 32 + pacmans.hashCode();
 		//result = result * 32 + dots.hashCode();
 		//return result;
-
 		return tab.hashCode();
 
 		//return dot.hashCode() + gost.hashCode() * 32;
