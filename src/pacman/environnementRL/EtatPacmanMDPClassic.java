@@ -63,27 +63,36 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 			for (int j = 0; j < window; j++) {
 				int x = xPac - windowR + i;
 				int y = yPac - windowR + j;
-				System.out.println("x=" + x +" y=" + y);
-				if (i == windowR && j == windowR){
-					tab[i][j] = 1;
-				} else {
-					for (int u = 1; u < _stategamepacman.getMaze().getSizeX() - 1; u++) {
-						for (int v = 1; v < _stategamepacman.getMaze().getSizeY() - 1; v++) {
-							if (u == x && v == y && _stategamepacman.getMaze().isFood(u, v)) {
-								tab[i][j] = 2;
-							}
+				for (int u = 1; u < _stategamepacman.getMaze().getSizeX() - 1; u++) {
+					for (int v = 1; v < _stategamepacman.getMaze().getSizeY() - 1; v++) {
+						if (u == x && v == y && _stategamepacman.getMaze().isFood(u, v)) {
+							tab[i][j] = 2;
+						}
+						if (u == x && v == y && _stategamepacman.getMaze().isWall(u,v)) {
+							tab[i][j] = 4;
 						}
 					}
-					for (int u = 0; u < _stategamepacman.getNumberOfGhosts() - 1; u++) {
-						int xGost = _stategamepacman.getGhostState(i).getX();
-						int yGost = _stategamepacman.getGhostState(i).getY();
-						if (xGost == x && yGost == y) {
-							tab[i][j] = 3;
-						}
+				}
+				for (int u = 0; u < _stategamepacman.getNumberOfGhosts() - 1; u++) {
+					int xGost = _stategamepacman.getGhostState(u).getX();
+					int yGost = _stategamepacman.getGhostState(u).getY();
+					if (xGost == x && yGost == y) {
+						tab[i][j] = 3;
 					}
 				}
 			}
 		}
+		tab[windowR][windowR] = 1;
+
+		for (int i = 0; i < 5; i++){
+			String msg = "";
+			for (int j = 0; j < 5; j++){
+				msg += tab[i][j] + " ";
+			}
+			//System.out.println(msg);
+		}
+
+
 				/*
 		List<Point> dots2 = new ArrayList<>();
 		for (int i = 1; i < _stategamepacman.getMaze().getSizeX() - 1; i++) {
