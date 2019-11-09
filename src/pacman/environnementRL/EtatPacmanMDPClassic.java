@@ -70,7 +70,8 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 						}
 					}
 				}
-				for (int u = 0; u < _stategamepacman.getNumberOfGhosts() - 1; u++) {
+
+				for (int u = 0; u < _stategamepacman.getNumberOfGhosts(); u++) {
 					int xGost = _stategamepacman.getGhostState(u).getX();
 					int yGost = _stategamepacman.getGhostState(u).getY();
 					if (xGost == x && yGost == y) {
@@ -81,7 +82,7 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		}
 		tab[windowR][windowR] = 1;
 
-		if (true){
+		if (false){
 			System.out.println("test");
 			for (int i = 0; i < 3; i++){
 				for (int j = 0; j < 3; j++){
