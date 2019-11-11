@@ -86,7 +86,7 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 			}
 		}
 
-		tab[3][3] = 1;
+		tab[2][2] = 1;
 
 		if (false){
 			for (int i = 0; i < 5; i++){
