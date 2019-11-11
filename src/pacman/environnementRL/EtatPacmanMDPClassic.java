@@ -86,7 +86,7 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 
 		tab[1][1] = 1;
 
-		if (true){
+		if (false){
 			for (int i = 0; i < 3; i++){
 				for (int j = 0; j < 3; j++){
 					System.out.print(tab[i][j]);
@@ -129,7 +129,17 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		//result = result * 32 + pacmans.hashCode();
 		//result = result * 32 + dots.hashCode();
 		//return result;
-		return tab.hashCode();
+        int result = 0;
+        int cpt = 10;
+        for (int i = 0; i < tab.length; i++){
+            for (int j=0; j < tab[i].length; j++){
+                if(tab[i][j] != 0){
+                    result = result * 10 + tab[i][j];
+                }
+
+            }
+        }
+		return result;
 
 		//return dot.hashCode() + gost.hashCode() * 32;
 	}
@@ -143,7 +153,14 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 	@Override
 	public boolean equals(Object e){
 		EtatPacmanMDPClassic e1 = (EtatPacmanMDPClassic) e;
-		return e.hashCode() == this.hashCode();
+		for (int i = 0; i < tab.length; i++){
+            for (int j=0; j < tab[i].length; j++){
+                if(((EtatPacmanMDPClassic) e).tab[i][j] != this.tab[i][j]){
+                    return false;
+                }
+            }
+        }
+		return true;
 	}
 	
 	
