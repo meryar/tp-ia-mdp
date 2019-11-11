@@ -52,22 +52,24 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 			}
 		}**/
 
-		tab = new int[3][3];
-		for (int i = 0; i < 3; i++){
-			for (int j = 0; j < 3; j++){
+		tab = new int[5][5];
+		for (int i = 0; i < 5; i++){
+			for (int j = 0; j < 5; j++){
 				tab[i][j] = 0;
 			}
 		}
 		int xPac = _stategamepacman.getPacmanState(0).getX();
 		int yPac = _stategamepacman.getPacmanState(0).getY();
 
-		for (int i = -1; i <= 1; i++){
-			for (int j = -1; j <= 1; j++){
-				if (_stategamepacman.getMaze().isWall(xPac + i, yPac + j)){
-					tab[i+1][j+1] = 4;
-				}
-				if (_stategamepacman.getMaze().isFood(xPac + i, yPac + j)){
-					tab[i+1][j+1] = 2;
+		for (int i = -2; i <= 2; i++){
+			for (int j = -1; j <= 1; j++) {
+				if (xPac + i > 0 && xPac + i < _stategamepacman.getMaze().getSizeX() && yPac + j > 0 && yPac + j < _stategamepacman.getMaze().getSizeY()){
+					if (_stategamepacman.getMaze().isWall(xPac + i, yPac + j)) {
+						tab[i + 2][j + 2] = 4;
+					}
+					if (_stategamepacman.getMaze().isFood(xPac + i, yPac + j)) {
+						tab[i + 2][j + 2] = 2;
+					}
 				}
 			}
 		}
@@ -75,24 +77,25 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		for (int g = 0; g < _stategamepacman.getNumberOfGhosts(); g++){
 			int xGhost = _stategamepacman.getGhostState(g).getX();
 			int yGhost = _stategamepacman.getGhostState(g).getY();
-			for (int i = -1; i <= 1; i++){
-				for (int j = -1; j <= 1; j++){
+			for (int i = -2; i <= 2; i++){
+				for (int j = -2; j <= 2; j++){
 					if (xGhost == xPac + i && yGhost == yPac + j){
-						tab[i+1][j+1] = 3;
+						tab[i+2][j+2] = 3;
 					}
 				}
 			}
 		}
 
-		tab[1][1] = 1;
+		tab[3][3] = 1;
 
 		if (false){
-			for (int i = 0; i < 3; i++){
-				for (int j = 0; j < 3; j++){
+			for (int i = 0; i < 5; i++){
+				for (int j = 0; j < 5; j++){
 					System.out.print(tab[i][j]);
 				}
 				System.out.print("\n");
 			}
+			System.out.println("--------------");
 		}
 
 
