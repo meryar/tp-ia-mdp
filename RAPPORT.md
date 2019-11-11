@@ -21,6 +21,20 @@ Le risque de tomber dans les -100 est très faible et l'agent décide de travers
 ## Question 1:
 *Précisez et justifiez les éléments que vous avez utilisés pour la définition d’un état du MDP pour le jeu du Pacman (partie 2.2)*
 
+Pour représenter l'état, nous avons utilisé un fenêtrage de taille 2. De cette façon, le pacman serat toujours capable de voir les fantomes avant qu'ils l'atteignent tout en éttant capable de faire des parallèles entre des situations similaires ayant lieu dans des endroits différents du labyrinthe.
+Pour l'implémentation, nous avons utilisé un tableau de taille 5x5, avec dedans des symboles correspondant au type d'entité sur la case:
+	- 0 pour une case vide
+	- 1 pour le pacman
+	- 2 pour la nouriture
+	- 3 pour les fantômes
+	- 4 pour les murs
+nous obtenons donc des tableau ressamblant à:
+0 4 0 4 0
+3 4 0 4 0
+0 4 1 4 0
+0 4 2 4 0
+0 2 2 2 2
+
 
 ## Question 2:
 *Précisez et justifiez les fonctions caractéristiques que vous avez choisies pour la classe FeatureFunctionPacman (partie 2.3).*
