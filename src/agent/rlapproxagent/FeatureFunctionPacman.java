@@ -66,6 +66,7 @@ public class FeatureFunctionPacman implements FeatureFunction{
 				}
 			}
 		}
+		if (vfeatures[1] == 0) vfeatures[1] = -1;
 
 
 		// feature function 3: presence de food à la prochaine position

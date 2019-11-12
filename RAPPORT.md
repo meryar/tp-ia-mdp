@@ -46,7 +46,7 @@ Avec 2 séries de 20 000 runs d'apprentissage et 300 runs d'exploitation de poli
 
 Nous n'avons malheureusement eu le temps d'implémenter que les fonctions proposées dans le sujet, à savoir:
 - le biais (1)
-- le nombre de fantomes menaçants (à une case de distance de la position d'arrivée
+- le nombre de fantomes menaçants (à une case de distance de la position d'arrivée (-1 si aucuns)
 - la presence ou non de nouriture sur la prochaine position (0 si oui, -1 sinon -> ces valeurs donnent de meilleurs resultats.)
 - la distance à la nouriture la plus proche (normalisée par rapport à la somme des largeur et hauteur du labyrinthe.
 
