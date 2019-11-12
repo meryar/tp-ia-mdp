@@ -11,10 +11,10 @@ Le risque de tomber dans les -100 est très faible et l'agent décide de travers
 
 ## Question 5.2 Discount Grid
 *Donnez les valeurs des paramètres dans cahque cas et la justification de ces choix*
-1) En mettant les autre récompenses à -2, l'agent vas privilégier le trajet le plus cours possible et vas donc viser l'etat à récompense +1.	
-2) En mettant le bruit à 0, l'agent n'aura plus aucun risque à prendre le chemin inférieur
-3) En mettant gamma 0.2, l'agent considerera toujours le chemin par en-bas trop dangereux mais cherchera la récompense la plus proche et rejoindra donc le +1 par en-haut
-4) En mettant les autres récompenses à 10 ou plus, l'agent aura plus interet à ne jamais aller dans un etat absorbant (même le +10) et vas chercher à continuer à se déplacer sur la grille infiniment
+1) En mettant les autre récompenses à -2, l'agent vas privilégier le trajet le plus cours possible et vas donc viser l'etat à récompense +1. ![img1](img/1_reckless.PNG)
+2) En mettant le bruit à 0, l'agent n'aura plus aucun risque à prendre le chemin inférieur. ![img2](img/10_reckless.PNG)
+3) En mettant gamma 0.2, l'agent considerera toujours le chemin par en-bas trop dangereux mais cherchera la récompense la plus proche et rejoindra donc le +1 par en-haut. ![img3](img/1_safe.PNG)
+4) En mettant les autres récompenses à 10 ou plus, l'agent aura plus interet à ne jamais aller dans un etat absorbant (même le +10) et vas chercher à continuer à se déplacer sur la grille infiniment. ![img4](img/traveller.PNG)
 
 # Rapport TP2
 
@@ -28,7 +28,7 @@ Pour l'implémentation, nous avons utilisé un tableau de taille 5x5, avec dedan
 	- 2 pour la nouriture
 	- 3 pour les fantômes
 	- 4 pour les murs
-nous obtenons donc des tableau ressamblant à:
+nous obtenons donc des tableau ressemblant à:
 ```
 0 4 0 4 0 
 3 4 0 4 0
