@@ -29,12 +29,13 @@ Pour l'implémentation, nous avons utilisé un tableau de taille 5x5, avec dedan
 	- 3 pour les fantômes
 	- 4 pour les murs
 nous obtenons donc des tableau ressamblant à:
-0 4 0 4 0
+```
+0 4 0 4 0 
 3 4 0 4 0
 0 4 1 4 0
 0 4 2 4 0
 0 2 2 2 2
-
+```
 résultats:
 Avec 2 séries de 20 000 runs et 300 runs d'exploitation de politique (gamma = 0.8, alpha = 0.1, epsilon = 0.15), nous avons obtenu jusqu'à 62% de taux de réussite.
 
