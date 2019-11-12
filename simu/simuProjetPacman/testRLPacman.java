@@ -67,21 +67,22 @@ public class testRLPacman extends Application{
 	
 	private static void setRLAgent(){
 		//QLearning tabulaire classique
-		pacmanmdp = new EnvironnementPacmanMDPClassic(mazename,true);
+	/*	pacmanmdp = new EnvironnementPacmanMDPClassic(mazename,true);
 		rlagent = new QLearningAgent(alpha, gamma, pacmanmdp);
-
+/*   */   /*
 		//Qlearning avec fonctions caracteristiques identite
-	 	//pacmanmdp = new EnvironnementPacmanMDPClassic(mazename,true);
-	    //EtatPacmanMDPClassic etatmdp = (EtatPacmanMDPClassic) pacmanmdp.getEtatCourant();
-		//System.out.println("Dimensions de etatMDP: "+etatmdp.getDimensions());
-		//FeatureFunction featurefunction = new FeatureFunctionIdentity(etatmdp.getDimensions(),4);
-		//rlagent = new QLApproxAgent(alpha,gamma,pacmanmdp,featurefunction);
+	 	pacmanmdp = new EnvironnementPacmanMDPClassic(mazename,true);
+	    EtatPacmanMDPClassic etatmdp = (EtatPacmanMDPClassic) pacmanmdp.getEtatCourant();
+		System.out.println("Dimensions de etatMDP: "+etatmdp.getDimensions());
+		FeatureFunction featurefunction = new FeatureFunctionIdentity(etatmdp.getDimensions(),4);
+		rlagent = new QLApproxAgent(alpha,gamma,pacmanmdp,featurefunction);
+/*  */
 
 		//QLearning avec approximation lineaire
-	/*	pacmanmdp = new EnvironnementPacmanFeatureRL(mazename,true);//smallGrid smallGrid2 mediumGrid
+		pacmanmdp = new EnvironnementPacmanFeatureRL(mazename,true);//smallGrid smallGrid2 mediumGrid
 		FeatureFunction featurefunction2 = new FeatureFunctionPacman();
 		rlagent = new QLApproxAgent(alpha,gamma,pacmanmdp,featurefunction2);
-*/
+/* */
 
 	}
 	
