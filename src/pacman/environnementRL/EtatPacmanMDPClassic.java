@@ -16,16 +16,10 @@ import environnement.Etat;
 public class EtatPacmanMDPClassic implements Etat , Cloneable{
 
 
-	List<Point> ghosts;
-	List<Point> pacmans;
-	List<Point> dots;
+	int dimension = 3500;
 
-	int dimension = 3000;
-
-	//Point dot, gost;
 
 	int [][] tab;
-
 
 	public EtatPacmanMDPClassic(StateGamePacman _stategamepacman){
 
@@ -62,7 +56,7 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		int yPac = _stategamepacman.getPacmanState(0).getY();
 
 		for (int i = -2; i <= 2; i++){
-			for (int j = -1; j <= 1; j++) {
+			for (int j = -2; j <= 2; j++) {
 				if (xPac + i > 0 && xPac + i < _stategamepacman.getMaze().getSizeX() && yPac + j > 0 && yPac + j < _stategamepacman.getMaze().getSizeY()){
 					if (_stategamepacman.getMaze().isWall(xPac + i, yPac + j)) {
 						tab[i + 2][j + 2] = 4;
@@ -87,6 +81,20 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		}
 
 		tab[2][2] = 1;
+
+		tab[0][0] = 0;
+		tab[0][1] = 0;
+		tab[1][0] = 0;
+		tab[0][3] = 0;
+		tab[0][4] = 0;
+		tab[1][4] = 0;
+		tab[3][0] = 0;
+		tab[4][0] = 0;
+		tab[4][1] = 0;
+		tab[3][4] = 0;
+		tab[4][3] = 0;
+		tab[4][4] = 0;  /* */
+
 
 		if (false){
 			for (int i = 0; i < 5; i++){
@@ -133,7 +141,6 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 		//result = result * 32 + dots.hashCode();
 		//return result;
         int result = 0;
-        int cpt = 10;
         for (int i = 0; i < tab.length; i++){
             for (int j=0; j < tab[i].length; j++){
                 if(tab[i][j] != 0){
@@ -155,7 +162,6 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
 
 	@Override
 	public boolean equals(Object e){
-		EtatPacmanMDPClassic e1 = (EtatPacmanMDPClassic) e;
 		for (int i = 0; i < tab.length; i++){
             for (int j=0; j < tab[i].length; j++){
                 if(((EtatPacmanMDPClassic) e).tab[i][j] != this.tab[i][j]){
@@ -163,6 +169,8 @@ public class EtatPacmanMDPClassic implements Etat , Cloneable{
                 }
             }
         }
+
+
 		return true;
 	}
 	
