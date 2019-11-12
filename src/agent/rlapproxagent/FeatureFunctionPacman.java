@@ -69,7 +69,7 @@ public class FeatureFunctionPacman implements FeatureFunction{
 
 
 		// feature function 3: presence de food à la prochaine position
-		vfeatures[2] = stategamepacman.getMaze().isFood(pacmanstate_next.getX(),pacmanstate_next.getY())? 1 : 0;
+		vfeatures[2] = stategamepacman.getMaze().isFood(pacmanstate_next.getX(),pacmanstate_next.getY())? 0 : -1;
 
 		// feature function 4: distance au dot le plus proche
 		vfeatures[3] = (double)stategamepacman.getClosestDot(pacmanstate_next) /
