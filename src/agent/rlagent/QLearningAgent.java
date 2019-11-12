@@ -60,12 +60,8 @@ public class QLearningAgent extends RLAgent {
 
 		//*** VOTRE CODE
 
-		if (!this.qvaleurs.containsKey(e)){
-			return this.getActionsLegales(e);
-		}
 
-
-		double best_value = Integer.MIN_VALUE;
+		double best_value = Double.MAX_VALUE * -1;
 		for (Action action: this.getActionsLegales(e)){
 			if (this.getQValeur(e,action) > best_value){
 				returnactions.clear();
@@ -74,6 +70,12 @@ public class QLearningAgent extends RLAgent {
 			} else if (this.getQValeur(e,action) == best_value) returnactions.add(action);
 		}
 
+		if (returnactions.size() == 0){
+			System.out.println("min_val: " + best_value);
+			for (Action action: this.getActionsLegales(e)){
+				System.out.println(this.getQValeur(e,action));
+			}
+		}
 
 		return returnactions;
 		
