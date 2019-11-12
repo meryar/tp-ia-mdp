@@ -9,6 +9,7 @@ import environnement.Etat;
 
 import java.awt.*;
 
+
 /**
  * Vecteur de fonctions caracteristiques pour jeu de pacman: 4 fonctions phi_i(s,a)
  *  
@@ -55,7 +56,7 @@ public class FeatureFunctionPacman implements FeatureFunction{
 
 		// feature function 2: nb ghosts menaçants
 		vfeatures[1] = 0;
-		Point pacman = new Point(stategamepacman.getPacmanState(0).getX(), stategamepacman.getPacmanState(0).getY());
+		Point pacman = new Point(pacmanstate_next.getX(), pacmanstate_next.getY());
 		for (int i = 0; i < stategamepacman.getNumberOfGhosts(); i++){
 			Point ghost = new Point(stategamepacman.getGhostState(i).getX(),stategamepacman.getGhostState(i).getY());
 			Point diff = new Point((int)(ghost.getX() - pacman.getX()), (int)(ghost.getY() - pacman.getY()));
@@ -66,12 +67,17 @@ public class FeatureFunctionPacman implements FeatureFunction{
 			}
 		}
 
+
 		// feature function 3: presence de food à la prochaine position
 		vfeatures[2] = stategamepacman.getMaze().isFood(pacmanstate_next.getX(),pacmanstate_next.getY())? 1 : 0;
 
 		// feature function 4: distance au dot le plus proche
-		vfeatures[3] = stategamepacman.getClosestDot(pacmanstate_next) / stategamepacman.getMaze().getSizeX()*stategamepacman.getMaze().getSizeY();
-		
+		vfeatures[3] = (double)stategamepacman.getClosestDot(pacmanstate_next) /
+				((double)stategamepacman.getMaze().getSizeX() + (double)stategamepacman.getMaze().getSizeY());
+
+		//for (int i = 0; i<4; i++) System.out.println(vfeatures[i]);
+		//System.out.println("-----------");
+
 		return vfeatures;
 	}
 
